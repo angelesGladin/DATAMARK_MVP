@@ -1,0 +1,155 @@
+// ==============================
+// Prisma schema para DATAMARK (MVP)
+// Compatible con Prisma v7
+// ==============================
+
+// ------------------------------
+// GENERATOR
+// ------------------------------
+generator client {
+  provider = "prisma-client-js"
+}
+
+// ------------------------------
+// DATASOURCE
+// En Prisma v7 la URL YA NO va aquí
+// (se toma desde prisma.config.ts)
+// ------------------------------
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+// ==============================
+// MODELOS DEL NEGOCIO
+// ==============================
+
+model Store {
+  /// Tienda / negocio (multi-tenant)
+  id        String   @id @default(uuid())
+  name      String
+  city      String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relaciones
+  products  Product[]
+  customers Customer[]
+  sales     Sale[]
+  users     User[]
+}
+
+model Product {
+  /// Producto de ropa o calzado
+  id        String   @id @default(uuid())
+  storeId   String
+  name      String
+  sku       String?  @unique
+  barcode   String?  @unique
+  category  String?
+  cost      Decimal
+  price     Decimal
+  stock     Int      @default(0)
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relaciones
+  store     Store     @relation(fields: [storeId], references: [id])
+  items     SaleItem[]
+}
+
+model Customer {
+  id             String   @id @default(uuid())
+  storeId         String
+
+  // B2C: persona
+  fullName        String?
+
+  // B2B: empresa
+  companyName     String?
+  type            String   @default("B2C") // B2C | B2B
+
+  // Documento (Perú)
+  documentType    String?  // DNI | RUC
+  documentNumber  String?
+
+  phone           String?
+  email           String?
+
+  // Opcional (para B2B crédito)
+  creditLimit     Decimal? @default(0)
+  currentBalance  Decimal? @default(0)
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  store           Store @relation(fields: [storeId], references: [id])
+  sales           Sale[]
+
+  @@index([storeId])
+  @@index([documentNumber])
+}
+
+model Sale {
+  /// Venta (cabecera)
+  id         String    @id @default(uuid())
+  storeId    String
+  customerId String?
+  soldAt     DateTime  @default(now())
+  total      Decimal
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+
+  // Relaciones
+  store      Store      @relation(fields: [storeId], references: [id])
+  customer   Customer?  @relation(fields: [customerId], references: [id])
+  items      SaleItem[]
+}
+
+model SaleItem {
+  /// Detalle de venta
+  id        String   @id @default(uuid())
+  saleId    String
+  productId String
+  qty       Int
+  unitPrice Decimal
+  lineTotal Decimal
+
+  // Relaciones
+  sale      Sale    @relation(fields: [saleId], references: [id], onDelete: Cascade)
+  product   Product @relation(fields: [productId], references: [id])
+
+  @@index([saleId])
+  @@index([productId])
+}
+
+model User {
+  id        String   @id @default(uuid())
+  storeId   String
+  email     String   @unique
+  password  String
+  role      String   @default("admin") // admin | cashier
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // relaciones
+  store     Store @relation(fields: [storeId], references: [id])
+}
+
+model Client {
+  id         String   @id @default(uuid())
+  storeId    String
+  name       String
+  email      String?
+  phone      String?
+  documentId String?
+  notes      String?
+  isActive   Boolean  @default(true)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@index([storeId])
+}
