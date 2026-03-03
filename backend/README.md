@@ -8,26 +8,6 @@
 
 ---
 
-## 📌 Índice
-
-- [📙 Resumen Técnico](#-resumen-técnico)
-- [🎯 Objetivo del Backend](#-objetivo-del-backend)
-- [🏗️ Arquitectura](#️-arquitectura)
-- [🧩 Estructura de Carpetas](#-estructura-de-carpetas)
-- [🗄️ Persistencia y Prisma](#️-persistencia-y-prisma)
-- [🔌 API Endpoints (MVP)](#-api-endpoints-mvp)
-- [📊 KPIs y Dashboard](#-kpis-y-dashboard)
-- [🛡️ Middlewares y Manejo de Errores](#️-middlewares-y-manejo-de-errores)
-- [✅ Validaciones y Reglas de Negocio](#-validaciones-y-reglas-de-negocio)
-- [🧪 Testing / Verificación Manual](#-testing--verificación-manual)
-- [🔐 Variables de Entorno](#-variables-de-entorno)
-- [🐳 Docker / Postgres](#-docker--postgres)
-- [🚀 Ejecución Local](#-ejecución-local)
-- [📂 Repositorio y Diagramas](#-repositorio-y-diagramas)
-- [📜 Licencia](#-licencia)
-
----
-
 ## 📙 Resumen Técnico
 
 Backend REST para DATAMARK (MVP B2B SaaS).
@@ -211,20 +191,9 @@ npx prisma migrate dev
 npm run dev
 ```
 
----
 
-## 📂 Repositorio y Diagramas
 
-Repositorio:
-https://github.com/No-Country-simulation/S02-26-Equipo-43-Data-Science.git
 
-Arquitectura:
-https://github.com/No-Country-simulation/S02-26-Equipo-43-Data-Science/blob/main/docs/architecture.mmd
-
-ERD:
-https://github.com/No-Country-simulation/S02-26-Equipo-43-Data-Science/blob/main/docs/erd.mmd
-
----
 
 ## 📜 Licencia
 
