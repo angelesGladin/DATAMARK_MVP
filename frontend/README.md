@@ -6,27 +6,6 @@
 
 ---
 
-## 📌 Índice
-
-- [📙 Resumen Técnico](#-resumen-técnico)
-- [🎯 Objetivo del Frontend](#-objetivo-del-frontend)
-- [🏗️ Arquitectura de UI](#️-arquitectura-de-ui)
-- [🧩 Estructura de Carpetas](#-estructura-de-carpetas)
-- [🔌 Capa de API](#-capa-de-api)
-- [📄 Páginas Principales](#-páginas-principales)
-- [📊 Dashboard](#-dashboard)
-- [💰 Registro de Ventas](#-registro-de-ventas)
-- [📦 Gestión de Productos](#-gestión-de-productos)
-- [🎨 Estilos y UX](#-estilos-y-ux)
-- [✅ Estados de UI](#-estados-de-ui)
-- [🧪 Verificación Manual](#-verificación-manual)
-- [🔧 Variables de Entorno](#-variables-de-entorno)
-- [🚀 Ejecución Local](#-ejecución-local)
-- [📂 Repositorio y Diagramas](#-repositorio-y-diagramas)
-- [📜 Licencia](#-licencia)
-
----
-
 ## 📙 Resumen Técnico
 
 Frontend web para DATAMARK (MVP).
@@ -192,20 +171,7 @@ Frontend:
 http://localhost:5173
 ```
 
----
 
-## 📂 Repositorio y Diagramas
-
-Repositorio:
-https://github.com/No-Country-simulation/S02-26-Equipo-43-Data-Science.git
-
-Arquitectura:
-https://github.com/No-Country-simulation/S02-26-Equipo-43-Data-Science/blob/main/docs/architecture.mmd
-
-ERD:
-https://github.com/No-Country-simulation/S02-26-Equipo-43-Data-Science/blob/main/docs/erd.mmd
-
----
 
 ## 📜 Licencia
 
